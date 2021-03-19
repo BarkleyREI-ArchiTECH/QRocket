@@ -3,6 +3,9 @@
 
 // Write your JavaScript code.
 
+
+$("#date").datetimepicker();
+
 $("#genUrl").click(() => {
   var value = $("#url").val();
   $("#placeholder").attr("src", "/api/qr/gen-url?url=" + value);
