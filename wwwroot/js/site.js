@@ -4,7 +4,8 @@
 // Write your JavaScript code.
 
 
-$("#date").datetimepicker();
+$("#start-date").datetimepicker();
+$("#end-date").datetimepicker();
 
 $("#genIcs").click(() => {
   var value = {
