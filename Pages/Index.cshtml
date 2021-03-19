@@ -1,22 +1,26 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Page URL QR";
 }
 
 <div class="text-center">
   <h1 class="display-4">QR Generator</h1>
   <p>Generate a QR Code for a URL</p>
   <form>
-    <label>Page Url</label>
-    <input type="text" id="url" name="url" />
-    <button type="button" id="genUrl">Generate</button>
+    <div class="form-row form-group">
+      <label for="url">Page Url</label>
+      <input class="form-control" type="text" id="url" name="url" />
+    </div>
+    <div class="form-row form-group">
+      <button class="btn btn-dark btn-large" type="button" id="genUrl">Generate</button>
+    </div>
   </form>
 </div>
 
 <div class="text-center">
   <div class="placeholder-container">
-    <img id="placeholder" src="#" alt="" width="512" height="512"/>
+    <img id="placeholder" src="/api/qr/gen-url?url=barkleyus.com" alt="" width="512" height="512"/>
   </div>
 </div>
 
