@@ -5,5 +5,5 @@
 
 $("#genUrl").click(() => {
   var value = $("#url").val();
-  $("#placeholder").attr("src", "/api/qr/url?url=" + value);
+  $("#placeholder").attr("src", "/api/qr/gen-url?url=" + value);
 });

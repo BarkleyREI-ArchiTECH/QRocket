@@ -15,8 +15,8 @@ namespace QRBuddy
 
         public QrController(IHostEnvironment env) => _env = env;
 
-        [HttpGet("url")]
-        public ActionResult Url([FromQuery] string url)
+        [HttpGet("gen-url")]
+        public ActionResult GenUrl([FromQuery] string url)
         {
             var root = _env.ContentRootPath;
 
