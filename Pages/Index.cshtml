@@ -1,0 +1,23 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+  <h1 class="display-4">QR Generator</h1>
+  <p>Generate a QR Code for a URL</p>
+  <form>
+    <label>Page Url</label>
+    <input type="text" id="url" name="url" />
+    <button type="button" id="genUrl">Generate</button>
+  </form>
+</div>
+
+<div class="text-center">
+  <div class="placeholder-container">
+    <img id="placeholder" src="#" alt="" width="512" height="512"/>
+  </div>
+</div>
+
+
