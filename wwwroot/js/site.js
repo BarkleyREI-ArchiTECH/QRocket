@@ -6,7 +6,27 @@
 
 $("#date").datetimepicker();
 
+$("#genIcs").click(() => {
+  var value = {
+    url: $("#url").val(),
+    title: $("#title").val(),
+    location: $("#loc").val(),
+    startDate: $("#start-date").val(),
+    endDate: $("#end-date").val(),
+    notes: $("#note").val()
+  };
+  var json = JSON.stringify(value);
+  var encode = btoa(json);
+  console.log(value, json, encode);
+  $("#placeholder").attr("src", "/api/qr/gen-ics?val=" + encode);
+});
+
 $("#genUrl").click(() => {
-  var value = $("#url").val();
-  $("#placeholder").attr("src", "/api/qr/gen-url?url=" + value);
+  var value = {
+    url: $("#url").val()
+  };
+  var json = JSON.stringify(value);
+  var encode = btoa(json);
+  console.log(value, json, encode);
+  $("#placeholder").attr("src", "/api/qr/gen-url?val=" + encode);
 });
