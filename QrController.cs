@@ -3,8 +3,8 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using QRCoder;
 
@@ -14,21 +14,40 @@ namespace QRBuddy
     [ApiController]
     public class QrController : ControllerBase
     {
-        private readonly IHostEnvironment _env;
+        private readonly PayloadModel _barkleyBrand = new PayloadModel
+        {
+            DarkColor  = "#131313",
+            LightColor = "#EB052C",
+            Icon       = "Barkley_Logo_64.png"
+        };
 
-        public QrController(IHostEnvironment env) => _env = env;
+        private readonly IWebHostEnvironment _env;
+
+        private readonly PayloadModel _tacoJohnBrand = new PayloadModel
+        {
+            DarkColor  = "#76232F",
+            LightColor = "#E5DFDC",
+            Icon       = "TacoJohns_small.png"
+        };
+
+        public QrController(IWebHostEnvironment env) => _env = env;
 
         [HttpGet("gen-url")]
         public ActionResult GenUrl([FromQuery] string val)
         {
-            var root = _env.ContentRootPath;
-
-            var dark  = ColorTranslator.FromHtml("#131313");
-            var light = ColorTranslator.FromHtml("#e5dfdc");
-
-            var icon = (Bitmap) Image.FromFile(Path.Combine(root, "Barkley_Logo_64.png"));
+            Bitmap icon = null;
+            var    www  = _env.WebRootPath;
 
             var model = Decode(val);
+
+            model.DarkColor  = _tacoJohnBrand.DarkColor;
+            model.LightColor = _tacoJohnBrand.LightColor;
+            model.Icon       = null; //_tacoJohnBrand.Icon;
+
+            var dark  = ColorTranslator.FromHtml(model.DarkColor);
+            var light = ColorTranslator.FromHtml(model.LightColor);
+
+            if (!string.IsNullOrEmpty(model.Icon)) icon = (Bitmap) Image.FromFile(Path.Combine(www, "media", model.Icon));
 
             var       generator = new QRCodeGenerator();
             var       data      = generator.CreateQrCode(new PayloadGenerator.Url(model.Url), QRCodeGenerator.ECCLevel.Q);
@@ -44,14 +63,19 @@ namespace QRBuddy
         [HttpGet("gen-ics")]
         public ActionResult GenIcs([FromQuery] string val)
         {
-            var root = _env.ContentRootPath;
-
-            var dark  = ColorTranslator.FromHtml("#131313");
-            var light = ColorTranslator.FromHtml("#e5dfdc");
-
-            var icon = (Bitmap) Image.FromFile(Path.Combine(root, "Barkley_Logo_64.png"));
+            Bitmap icon = null;
+            var    www  = _env.WebRootPath;
 
             var model = Decode(val);
+
+            model.DarkColor  = _tacoJohnBrand.DarkColor;
+            model.LightColor = _tacoJohnBrand.LightColor;
+            model.Icon       = null; //_tacoJohnBrand.Icon;
+
+            var dark  = ColorTranslator.FromHtml(model.DarkColor);
+            var light = ColorTranslator.FromHtml(model.LightColor);
+
+            if (!string.IsNullOrEmpty(model.Icon)) icon = (Bitmap) Image.FromFile(Path.Combine(www, "media", model.Icon));
 
             var icsPayload = new PayloadGenerator.CalendarEvent(model.Title, model.Notes, model.Location, model.StartDate.Value, model.EndDate.Value, false);
 
@@ -71,18 +95,5 @@ namespace QRBuddy
             var json = Encoding.UTF8.GetString(Convert.FromBase64String(base64Json));
             return JsonConvert.DeserializeObject<PayloadModel>(json);
         }
-    }
-
-    public class PayloadModel
-    {
-        public string Url { get; set; }
-        public string Title { get; set; }
-        public string Location { get; set; }
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
-        public string Notes { get; set; }
-        public string DarkColor { get; set; }
-        public string LightColor { get; set; }
-        public string Icon { get; set; }
     }
 }
