@@ -50,7 +50,7 @@ namespace QRBuddy
             if (!string.IsNullOrEmpty(model.Icon)) icon = (Bitmap) Image.FromFile(Path.Combine(www, "media", model.Icon));
 
             var       generator = new QRCodeGenerator();
-            var       data      = generator.CreateQrCode(new PayloadGenerator.Url(model.Url), QRCodeGenerator.ECCLevel.Q);
+            var       data      = generator.CreateQrCode(new PayloadGenerator.Url(model.Url), QRCodeGenerator.ECCLevel.M);
             var       qr        = new QRCode(data);
             using var graphic   = qr.GetGraphic(20, dark, light, icon);
 
@@ -77,10 +77,12 @@ namespace QRBuddy
 
             if (!string.IsNullOrEmpty(model.Icon)) icon = (Bitmap) Image.FromFile(Path.Combine(www, "media", model.Icon));
 
-            var icsPayload = new PayloadGenerator.CalendarEvent(model.Title, model.Notes, model.Location, model.StartDate.Value, model.EndDate.Value, false);
+            var allDay = model.EndDate is null || model.EndDate.Value == model.StartDate.Value;
+
+            var icsPayload = new PayloadGenerator.CalendarEvent(model.Title, model.Notes, model.Location, model.StartDate.Value, model.EndDate.Value, allDay, PayloadGenerator.CalendarEvent.EventEncoding.iCalComplete);
 
             var       generator = new QRCodeGenerator();
-            var       data      = generator.CreateQrCode(icsPayload, QRCodeGenerator.ECCLevel.Q);
+            var       data      = generator.CreateQrCode(icsPayload, QRCodeGenerator.ECCLevel.M);
             var       qr        = new QRCode(data);
             using var graphic   = qr.GetGraphic(20, dark, light, icon);
 
