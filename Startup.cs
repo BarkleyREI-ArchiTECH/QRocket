@@ -27,7 +27,6 @@ namespace QRBuddy
             else
                 app.UseExceptionHandler("/Error");
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
