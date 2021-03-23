@@ -14,16 +14,17 @@ namespace QRBuddy
     [ApiController]
     public class QrController : ControllerBase
     {
-        private readonly PayloadModel _barkleyBrand = new PayloadModel
+        private readonly dynamic _barkleyBrand = new
         {
             DarkColor  = "#131313",
-            LightColor = "#EB052C",
+            LightColor = "#E6E7E8",
+            RedColor   = "#EB052C",
             Icon       = "Barkley_Logo_64.png"
         };
 
         private readonly IWebHostEnvironment _env;
 
-        private readonly PayloadModel _tacoJohnBrand = new PayloadModel
+        private readonly dynamic _tacoJohnBrand = new
         {
             DarkColor  = "#76232F",
             LightColor = "#E5DFDC",
@@ -40,9 +41,9 @@ namespace QRBuddy
 
             var model = Decode(val);
 
-            model.DarkColor  = _tacoJohnBrand.DarkColor;
-            model.LightColor = _tacoJohnBrand.LightColor;
-            model.Icon       = null; //_tacoJohnBrand.Icon;
+            if (string.IsNullOrEmpty(model.DarkColor)) model.DarkColor   = _barkleyBrand.DarkColor;
+            if (string.IsNullOrEmpty(model.LightColor)) model.LightColor = _barkleyBrand.LightColor;
+            model.Icon = null; //_tacoJohnBrand.Icon;
 
             var dark  = ColorTranslator.FromHtml(model.DarkColor);
             var light = ColorTranslator.FromHtml(model.LightColor);
@@ -68,9 +69,9 @@ namespace QRBuddy
 
             var model = Decode(val);
 
-            model.DarkColor  = _tacoJohnBrand.DarkColor;
-            model.LightColor = _tacoJohnBrand.LightColor;
-            model.Icon       = null; //_tacoJohnBrand.Icon;
+            if (string.IsNullOrEmpty(model.DarkColor)) model.DarkColor   = _barkleyBrand.DarkColor;
+            if (string.IsNullOrEmpty(model.LightColor)) model.LightColor = _barkleyBrand.LightColor;
+            model.Icon = null; //_tacoJohnBrand.Icon;
 
             var dark  = ColorTranslator.FromHtml(model.DarkColor);
             var light = ColorTranslator.FromHtml(model.LightColor);

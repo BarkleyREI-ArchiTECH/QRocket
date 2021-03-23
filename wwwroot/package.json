@@ -5,6 +5,7 @@
 	"devDependencies": {},
 	"dependencies": {
 		"bootstrap": "^4.6.0",
+		"bootstrap-colorpicker": "^3.2.0",
 		"eonasdan-bootstrap-datetimepicker": "^4.17.49",
 		"jquery": "^3.6.0",
 		"moment": "^2.25.3",

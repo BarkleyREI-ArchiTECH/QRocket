@@ -2,49 +2,41 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
   text-align: center;
+  white-space: normal;
   word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
+
+a { color: #0366d6; }
 
 .btn-primary {
-  color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+  color: #fff;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+  color: #fff;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
-  font-size: 14px;
-}
+
+html { font-size: 14px; }
+
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+  html { font-size: 16px; }
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
+.border-top { border-top: 1px solid #e5e5e5; }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
 
 button.accept-policy {
   font-size: 1rem;
@@ -53,29 +45,69 @@ button.accept-policy {
 
 /* Sticky footer styles
 -------------------------------------------------- */
+
 html {
-  position: relative;
   min-height: 100%;
+  position: relative;
 }
 
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+
 .footer {
-  position: absolute;
   bottom: 0;
-  width: 100%;
-  white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+  position: absolute;
+  white-space: nowrap;
+  width: 100%;
 }
+
+/* color picker
+-------------------------------------------------- */
+
+.colorpicker.colorpicker-2x { width: 272px; }
+
+.colorpicker-2x .colorpicker-saturation {
+  height: 200px;
+  width: 200px;
+}
+
+.colorpicker-2x .colorpicker-hue,
+.colorpicker-2x .colorpicker-alpha {
+  height: 200px;
+  width: 30px;
+}
+
+.colorpicker-2x .colorpicker-alpha,
+.colorpicker-2x .colorpicker-preview {
+  background-position: 0 0, 10px 10px;
+  background-size: 20px 20px;
+}
+
+.colorpicker-2x .colorpicker-preview,
+.colorpicker-2x .colorpicker-preview div {
+  font-size: 16px;
+  height: 30px;
+  line-height: 160%;
+}
+
+.colorpicker-saturation .colorpicker-guide {
+  border-radius: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  width: 10px;
+}
+
+.submit-row { margin-top: 1.5em; }
 
 
 .placeholder-container {
-  border: 3px solid black;
-  width: 600px;
-  height: 600px;
-  padding: 36px;
   background-color: #e6e7e8;
+  border: 3px solid black;
+  height: 600px;
   margin-top: 32px;
+  padding: 36px;
+  width: 600px;
 }

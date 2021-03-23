@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Page URL QR";
+  ViewData["Title"] = "Page URL QR";
 }
 
 <div class="text-center">
@@ -12,7 +12,25 @@
       <label for="url">Page Url</label>
       <input class="form-control" type="text" id="url" name="url" />
     </div>
-    <div class="form-row form-group">
+    <div class="row form-row">
+      <div class="col col-4">
+        <label>Dark Color (Foreground)</label>
+        <div id="color-dark" data-color="#76232F">
+          <input type="hidden" class="form-control" style="width: auto" /> <br>
+        </div>
+      </div>
+      <div class="col col-4">
+        <label>Light Color (Background)</label>
+        <div id="color-light" data-color="#E6E7E8">
+          <input type="hidden" class="form-control" style="width: auto" /> <br>
+        </div>
+      </div>
+      <div class="col col-4">
+        <label>Icon</label>
+        (TODO)
+      </div>
+    </div>
+    <div class="form-row form-group submit-row">
       <button class="btn btn-dark btn-large" type="button" id="genUrl">Generate</button>
     </div>
   </form>
@@ -20,7 +38,7 @@
 
 <div class="text-center">
   <div class="placeholder-container">
-    <img id="placeholder" src="/api/qr/gen-url?val=eyJ1cmwiOiJiYXJrbGV5dXMuY29tIn0=" alt="" width="460" height="460"/>
+    <img id="placeholder" src="/api/qr/gen-url?val=eyJ1cmwiOiJiYXJrbGV5dXMuY29tIn0=" alt="" width="460" height="460" />
   </div>
 </div>
 
