@@ -16,7 +16,7 @@
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
       }
     },
-    "QRBuddy": {
+    "QRocket": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

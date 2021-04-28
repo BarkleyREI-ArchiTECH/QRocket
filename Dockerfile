@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["QRBuddy.csproj", "."]
-RUN dotnet restore "./QRBuddy.csproj"
+COPY ["QRocket.csproj", "."]
+RUN dotnet restore "./QRocket.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "QRBuddy.csproj" -c Release -o /app/build
+RUN dotnet build "QRocket.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "QRBuddy.csproj" -c Release -o /app/publish
+RUN dotnet publish "QRocket.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "QRBuddy.dll"]
+ENTRYPOINT ["dotnet", "QRocket.dll"]

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using QRCoder;
 
-namespace QRBuddy
+namespace QRocket
 {
     [Route("/api/[controller]")]
     [ApiController]

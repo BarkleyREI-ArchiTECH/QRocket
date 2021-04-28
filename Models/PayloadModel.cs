@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QRBuddy
+namespace QRocket
 {
     public class PayloadModel
     {
